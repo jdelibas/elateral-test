@@ -1,0 +1,69 @@
+{
+  "name": "elateral",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "lint": "./node_modules/.bin/standard",
+    "lint:fix": "./node_modules/.bin/standard --fix",
+    "test": "export NODE_ENV=test && ./node_modules/.bin/ava",
+    "coverage": "export NODE_ENV=test && ./node_modules/.bin/nyc ./node_modules/.bin/ava",
+    "watch:start": "./node_modules/.bin/nodemon --watch src --exec node src/index.js",
+    "watch:test": "./node_modules/.bin/nodemon --watch src --watch test --exec npm run test",
+    "watch:coverage": "./node_modules/.bin/nodemon --watch src --watch test --exec npm run coverage"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.4",
+    "hapi": "^16.5.2",
+    "hapi-swagger": "^7.7.1",
+    "inert": "^4.2.1",
+    "joi": "^10.6.0",
+    "joi-objectid": "^2.0.0",
+    "lodash": "^4.17.4",
+    "mongoose": "^4.11.11",
+    "uuid": "^3.1.0",
+    "vision": "^4.1.1"
+  },
+  "devDependencies": {
+    "ava": "^0.22.0",
+    "nodemon": "^1.12.0",
+    "nyc": "^11.2.1",
+    "proxyquire": "^1.8.0",
+    "sinon": "^3.2.1",
+    "standard": "^10.0.3"
+  },
+  "ava": {
+    "files": [
+      "test/**/*.js"
+    ],
+    "source": [
+      "src/**/*.js"
+    ],
+    "concurrency": 5,
+    "failFast": true,
+    "tap": false,
+    "powerAssert": false
+  },
+  "nyc": {
+    "lines": 90,
+    "statements": 90,
+    "functions": 90,
+    "branches": 90,
+    "include": [
+      "src/**/*.js"
+    ],
+    "reporter": [
+      "text",
+      "lcov",
+      "html"
+    ],
+    "sourceMap": false,
+    "instrument": true,
+    "cache": false,
+    "all": true,
+    "check-coverage": true
+  }
+}

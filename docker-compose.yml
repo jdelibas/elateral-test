@@ -1,0 +1,19 @@
+version: '2'
+services:
+    contacts:
+      build: .
+      image: contacts:dev
+      volumes:
+        - ./src:/app/src
+      ports:
+        - 8080:8080
+      environment:
+        - MONGOURI=mongodb://mongodb:27017/contacts
+        - NODE_ENV=docker
+      command: npm run watch:start
+    mongodb:
+      image: mongo:3.4
+      volumes:
+        - ./tmp:/data/db
+      ports:
+        - 27017:27017
